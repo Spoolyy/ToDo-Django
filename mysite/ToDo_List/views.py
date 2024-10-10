@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Task
 
 def index(request):
-    return HttpResponse("This is a ToDo list app.")
+    tasks = Task.objects.all()
+    return render(request, "index.html", {"tasks":tasks})
+
