@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from .models import Task
 from django.utils import timezone
 from datetime import timedelta
+from .forms import TaskForm
 
 def index(request):
     tasks = Task.objects.all()
@@ -12,4 +13,10 @@ def index(request):
 
 def create(request):
     if request.method == "POST":
-        pass
+        form = TaskForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("/todolist/task")
+    else :
+        form = TaskForm()
+    return render(request, "create.html", {"form":form})
