@@ -21,7 +21,7 @@
         <h1 class="text-3xl font-semibold">Task List</h1>
         <ul class="grid grid-cols-5 space-y-1 bg-gray-300 rounded-lg shadow-md p-4">
             {%for task in tasks%}
-                <li class=" flex items-center justify-center rounded-md text-center col-span-4 py-1
+                <li class="flex items-center justify-center rounded-md text-center col-span-4 py-1
                 {% if task.is_completed %}
                     bg-green-200
                 {% elif task.due_date and task.due_date <= one_day_from_now %}
