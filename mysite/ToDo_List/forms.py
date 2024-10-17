@@ -10,5 +10,6 @@ class TaskForm(forms.ModelForm):
             "pub_date",
             "due_date",
             "priority",
+            "category",
             "is_completed",
         ]

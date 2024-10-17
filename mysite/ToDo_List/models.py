@@ -11,6 +11,13 @@ class Task(models.Model):
         NORMAL = 2,
         LOWPRIO = 3,
     priority = models.IntegerField(choices=Priorities.choices, default=Priorities.NORMAL)
+    categoryChoices = [
+        ('work', 'Work'),
+        ('family', 'Family'),
+        ('personal','Personal'),
+        ('other','Other')
+    ]
+    category = models.CharField(max_length=20, choices=categoryChoices, default='other')
     is_completed = models.BooleanField(default=False)
     def __str__(self):
         return self.content

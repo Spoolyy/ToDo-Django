@@ -19,6 +19,13 @@
 <body>
     <div class="flex flex-col justify-center items-center max-w-7xl mx-auto space-y-4">
         <h1 class="text-3xl font-semibold">Task List</h1>
+        <div class="flex bg-gray-300 p-4 rounded-xl space-x-2">
+            <div class="border border-gray-400 px-2 py-1 font-semibold rounded-lg hover:-translate-y-1 hover:scale-105 hover:shadow-xl duration-200 bg-gray-300"><a href="{% url 'todo-list:index' %}">All</a></div>
+            <div class="border border-gray-400 px-2 py-1 font-semibold rounded-lg hover:-translate-y-1 hover:scale-105 hover:shadow-xl duration-200 {% if current_category == 'work' %} bg-blue-300 {% else %} bg-gray-300 {% endif %}"><a href="{% url 'todo-list:index' %}?category=work">Work</a></div>
+            <div class="border border-gray-400 px-2 py-1 font-semibold rounded-lg hover:-translate-y-1 hover:scale-105 hover:shadow-xl duration-200 {% if current_category == 'family' %} bg-yellow-200 {% else %} bg-gray-300 {% endif %}"><a href="{% url 'todo-list:index' %}?category=family">Family</a></div>
+            <div class="border border-gray-400 px-2 py-1 font-semibold rounded-lg hover:-translate-y-1 hover:scale-105 hover:shadow-xl duration-200 {% if current_category == 'personal' %} bg-pink-200 {% else %} bg-gray-300 {% endif %}"><a href="{% url 'todo-list:index' %}?category=personal">Personal</a></div>
+            <div class="border border-gray-400 px-2 py-1 font-semibold rounded-lg hover:-translate-y-1 hover:scale-105 hover:shadow-xl duration-200 {% if current_category == 'other' %} bg-red-300 {% else %} bg-gray-300 {% endif %}"><a href="{% url 'todo-list:index' %}?category=other">Other</a></div>
+        </div>
         <ul class="grid grid-cols-5 space-y-1 bg-gray-300 rounded-lg shadow-md p-4">
             {%for task in tasks%}
                 <li class="flex items-center justify-center rounded-md text-center col-span-4 py-1
@@ -33,9 +40,11 @@
                     {{task.content}}<br>{{task.notes}}
                 </li>
                 <div class="flex items-center justify-center col-span-1 p-1 space-x-2 ml-4">
-                    <button class="bg-blue-400 px-2 py-1 rounded-md font-semibold hover:-translate-y-1 hover:shadow-md duration-300 hover:bg-blue-500"><a href="{% url 'todo-list:update' task.pk %}">Edit</a></button>
-                    <button class="bg-red-400 px-2 py-1 rounded-md font-semibold hover:-translate-y-1 hover:shadow-md duration-300 hover:bg-red-500"><a href="{% url 'todo-list:delete' task.pk%}">Delete</a></button>
+                    <button class="bg-blue-400 px-2 py-1 rounded-md font-semibold hover:-translate-y-1 hover:scale-105 hover:shadow-md duration-300 hover:bg-blue-500"><a href="{% url 'todo-list:update' task.pk %}">Edit</a></button>
+                    <button class="bg-red-400 px-2 py-1 rounded-md font-semibold hover:-translate-y-1 hover:scale-105 hover:shadow-md duration-300 hover:bg-red-500"><a href="{% url 'todo-list:delete' task.pk%}">Delete</a></button>
                 </div>
+            {% empty %}
+                <li class="flex items-center justify-center rounded-md text-center py-1 col-span-5 font-semibold">You haven't added a task yet. Add one by clicking the + button below</li>
             {% endfor %}
         </ul>
         <a href="/todolist/task/createnew" class="text-center text-2xl hover:scale-110 duration-300"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8">

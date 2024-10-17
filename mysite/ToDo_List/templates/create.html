@@ -81,6 +81,20 @@
                 {% endif %}
             </div>
 
+            
+            <div class="mb-4">
+                <label for="id_category" class="block text-gray-700 font-medium">Category</label>
+                <select name="category" id="id_category" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option value="other">Other</option>
+                    <option value="work">Work</option>
+                    <option value="family">Family</option>
+                    <option value="personal">Personal</option>
+                </select>
+                {% if form.category.errors %}
+                    <p class="text-red-500 text-sm">{{ form.category.errors }}</p>
+                {% endif %}
+            </div>
+
             <!-- Completed Status -->
             <div class="mb-4">
                 <label for="id_is_completed" class="inline-flex items-center text-gray-700 font-medium">
